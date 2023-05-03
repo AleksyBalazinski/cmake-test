@@ -1,0 +1,17 @@
+download glfw source package
+	https://www.glfw.org/download
+
+build glfw:
+	mkdir glfw_build
+	cd glfw_build
+	cmake ../glfw-3.3.8 -G "Visual Studio 17 2022" -A x64  # you may use a different buildsystem
+	cmake --build . --config Release
+
+switch to elevated shell:
+	cmake --install . # this will most probably install glfw in C:\Program Files\GLFW
+
+clone repo, create a build directory & from there
+	cmake ../cmake-test  -G "Visual Studio 17 2022" -A x64 -DCMAKE_PREFIX_PATH='C:/Program Files/GLFW' # an arguably better solution is to pass this thru an env. variable
+	cmake --build . 
+
+build folder now contains an .sln file
