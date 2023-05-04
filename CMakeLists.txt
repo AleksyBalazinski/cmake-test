@@ -1,16 +1,16 @@
 cmake_minimum_required(VERSION 3.10)
-
 project(TestCMake VERSION 1.0)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-message(GLFW_HOME ="$ENV{GLFW_HOME}")
-find_package(glfw3 3.3 REQUIRED HINTS $ENV{GLFW_HOME})
+add_subdirectory(deps)
 
-add_executable(TestCMake main.cpp "${PROJECT_SOURCE_DIR}/glad/src/glad.c")
+add_executable(TestCMake src/main.cpp)
 
-list(APPEND LOADER_INCLUDES "${PROJECT_SOURCE_DIR}/glad/include")
-target_include_directories(TestCMake PUBLIC ${LOADER_INCLUDES})
+target_include_directories(TestCMake PUBLIC include)
 
-target_link_libraries(TestCMake glfw)
+target_link_libraries(TestCMake PRIVATE glfw)
+target_link_libraries(TestCMake PRIVATE glad)
+target_link_libraries(TestCMake PRIVATE stb_image)
+target_link_libraries(TestCMake PRIVATE glm::glm)
