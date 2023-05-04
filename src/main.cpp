@@ -9,6 +9,7 @@
 #include "shader.hpp"
 
 #include <iostream>
+#include <filesystem>
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -19,6 +20,8 @@ const unsigned int SCR_HEIGHT = 600;
 
 int main()
 {
+    std::filesystem::path cwd = std::filesystem::current_path();
+    std::cout << "Hello from " << cwd.string() << std::endl;
     // glfw: initialize and configure
     // ------------------------------
     glfwInit();
@@ -56,7 +59,7 @@ int main()
 
     // build and compile our shader zprogram
     // ------------------------------------
-    Shader ourShader("6.3.coordinate_systems.vs", "6.3.coordinate_systems.fs");
+    Shader ourShader("shaders/6.3.coordinate_systems.vs", "shaders/6.3.coordinate_systems.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
